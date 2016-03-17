@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include<string>
 
@@ -67,4 +67,4 @@ float& val(int i, int j, twodim& parray, std::ifstream& infile)
 void free_twodim(twodim& parray)
 {
 	delete parray.a;
-}
+	}*/
