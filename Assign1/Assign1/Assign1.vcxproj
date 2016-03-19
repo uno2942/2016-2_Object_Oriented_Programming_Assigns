@@ -13,6 +13,9 @@
   <ItemGroup>
     <ClCompile Include="assign1.cpp" />
     <ClCompile Include="assign2.cpp" />
+    <ClCompile Include="assign3.cpp" />
+    <ClCompile Include="assign4.cpp" />
+    <ClCompile Include="experiment.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{805D96B7-8E8F-4C8E-89C6-46708285B937}</ProjectGuid>

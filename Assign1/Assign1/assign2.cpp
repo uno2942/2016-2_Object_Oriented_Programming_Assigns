@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include<string>
 
@@ -30,4 +30,4 @@ void write_str(ofstream& outfile, string s, int n)
 	if (length > n)
 	s.erase(n, length - 1);
 	outfile << s << endl;
-}
+	}*/
