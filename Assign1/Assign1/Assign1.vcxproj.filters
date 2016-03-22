@@ -24,11 +24,5 @@
     <ClCompile Include="assign3.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="experiment.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
-    <ClCompile Include="assign4.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

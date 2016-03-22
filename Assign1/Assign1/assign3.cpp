@@ -9,7 +9,6 @@ class encrypting
 public: encrypting(char* argc)
 	{
 		infile.open(argc);
-		cout << "asdfsdf";
 		outfile.open("Encoding_output.txt");
 	}
 	void Getline()
@@ -21,7 +20,7 @@ public: encrypting(char* argc)
 	}
 	void printing()
 	{
-		for (int i = 0; i < 11; i++)
+		for (int i = 0; i < str_length; i++)
 		{
 			outfile << codeString[i%code_length];
 		}

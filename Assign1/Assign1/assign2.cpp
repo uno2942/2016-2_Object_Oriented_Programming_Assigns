@@ -1,11 +1,9 @@
-/*#include<iostream>
+#include<iostream>
 #include<fstream>
 #include<string>
 
 using namespace std;
 void write_str(ofstream&, string, int n=10);
-
-
 
 int main()
 {
@@ -20,7 +18,7 @@ int main()
 		infile>>n;
 		write_str(outfile, s);
 		write_str(outfile, s, n);
-		getline(infile, s);
+		getline(infile, s); //다음 줄로 넘기기 위한 코드
 	}
 	return 0;
 }
@@ -30,4 +28,4 @@ void write_str(ofstream& outfile, string s, int n)
 	if (length > n)
 	s.erase(n, length - 1);
 	outfile << s << endl;
-	}*/
+	}
