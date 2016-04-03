@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include<string>
 
@@ -28,7 +28,7 @@ public: encrypting(char* argc)
 	
 		for (int i = 0; i < str_length; i++)
 		{
-			str[i] = (str[i] + codeString[i%code_length] - 64) % 95 + 32;//
+			str[i] = (str[i] + codeString[i%code_length] - 64) % 95 + 32;
 			outfile << str[i];
 		}
 		outfile << endl;
@@ -91,4 +91,4 @@ int main(int argv, char* argc[])
 	b.Getline();
 	b.Printing();
 	return 0;
-	}
+	}*/

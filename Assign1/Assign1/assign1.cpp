@@ -9,7 +9,7 @@ struct twodim{
 };
 
 void get_twodim(twodim&, int, int);
-float& val(int, int, twodim&, std::ifstream&);
+float& val(int, int, twodim&);
 void free_twodim(twodim&);
 
 
@@ -35,7 +35,8 @@ int main()
 	{
 		for (int k = 0; k < c; k++)
 		{
-			outfile << val(j, k, parray, infile) << ' ';//pointer?
+			infile >> val(j, k, parray);
+			outfile << (val(j, k, parray)=val(j,k,parray)*(j+1)*(k+1)) << ' ';
 		}
 		outfile << std::endl;
 	}
@@ -52,15 +53,12 @@ void get_twodim(twodim& parray, int row, int col)
 	parray.c = col;
 	parray.a = new float[row*col];
 }
-float& val(int i, int j, twodim& parray, std::ifstream& infile)
+float& val(int i, int j, twodim& parray)
 {
-	int temp;
-	infile >> temp;
-	parray.a[i*parray.c + j] = temp*(i + 1)*(j + 1);
-	return parray.a[i*parray.c + j];//¹®Á¦;;;
+	return parray.a[i*parray.c + j];
 }
 
 void free_twodim(twodim& parray)
 {
-	delete parray.a;
+	delete[] parray.a;
 	}
