@@ -1,0 +1,26 @@
+write_status
+insert_coin 500
+push_coke
+write_status
+insert_coin 500
+push_coke
+return_change
+write_status
+insert_coin 500
+insert_coin 500
+push_cider
+push_cider
+return_change
+write_status
+insert_coin 500
+insert_coin 500
+push_coke
+write_status
+return_change
+write_status
+insert_coin 100
+insert_coin 100
+insert_coin 500
+push_coke
+return_change
+write_status

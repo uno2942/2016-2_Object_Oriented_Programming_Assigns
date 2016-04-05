@@ -1,0 +1,10 @@
+ADD 1 1 
+ADD 1 2 
+ADD 1 4
+ADD 1 1
+ADD 2 6 
+ADD 2 8 
+ADD 2 1
+UNION 1 2
+PRINT 1
+

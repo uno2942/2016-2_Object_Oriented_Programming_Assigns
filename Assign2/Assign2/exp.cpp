@@ -2,23 +2,35 @@
 #include<string>
 #include<fstream>
 using namespace std;
-class e
-{
-public:
-	void sdf(ofstream outfile)
+namespace asdf{
+	
+	class e
 	{
+	public:
+		struct asdf { int a; };
 
-	}
-};
+		e(int a) 
+		{
+			
+		}
+		void sdf()
+		{
+
+		}
+		void tuy();
+	private:
+		asdf f;
+	};
+	
+
+}
+void asdf::e::tuy()
+{
+
+}
 int main()
 {
-	ofstream outfile("b.txt");
-	ifstream infile("a.txt");
-	e qwer;
-	qwer.sdf(outfile);
-	string s;
-	infile >> s;
-	cout << s;
-	return 0;
+	asdf::e wert;
+
 }
 */
