@@ -1,3 +1,26 @@
-return: 500
-return: 500
-return: 500
+coke: 4 cider: 1 remainder: 0
+500 in
+Shortage of money
+coke: 4 cider: 1 remainder: 500
+500 in
+Coke out
+Remainder: 300
+coke: 3 cider: 1 remainder: 0
+500 in
+500 in
+Cider out
+Sold out
+Remainder: 500
+coke: 3 cider: 0 remainder: 0
+500 in
+500 in
+Shortage of coin
+coke: 3 cider: 0 remainder: 1000
+Remainder: 1000
+coke: 3 cider: 0 remainder: 0
+100 in
+100 in
+500 in
+Coke out
+Remainder: 0
+coke: 2 cider: 0 remainder: 0

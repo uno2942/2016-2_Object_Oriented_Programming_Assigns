@@ -1,4 +1,4 @@
-/*#include<iostream>
+#include<iostream>
 #include<string>
 #include<fstream>
 using namespace std;
@@ -19,7 +19,7 @@ public:
 		empty.x = 0;
 		empty.p = NULL;
 	}
-	~Queue()
+	virtual ~Queue()
 	{
 		ptr[f] = ptr[f]->p;
 		Node* temp=ptr[f];
@@ -38,25 +38,24 @@ public:
 	int at(int index) const;
 	int size() const;
 	void reverse();
-	void print() const;
+	void print(ofstream&) const;
+	virtual void push_front(int n) {}
+	virtual int pop_back() { return 0; }
 protected:
 	void rev(Node* temp1);
 	Node* ptr[2];
 	Node empty;
 	int length;
 };
+
 class Deque : public Queue
 {
 public:
 	Deque() : Queue() {}
-	~Deque()
-	{
-		~Queue(); // 명확히
-
-	}
-	void push_front(int n);
-	int pop_back();
+	virtual void push_front(int n);
+	virtual int pop_back();
 };
+
 void Deque::push_front(int n)
 {
 	Node* temp = new Node;
@@ -67,15 +66,24 @@ void Deque::push_front(int n)
 }
 int Deque::pop_back()
 {
-	Node* temp=ptr[f];
-	for (int i = 0; i < length - 1; i++)
-		temp = temp->p;
-	int n = ptr[e]->x;
-	temp->p = ptr[e]->p;
-	delete ptr[e];
-	ptr[e] = temp;
-	length--;
-	return n;
+	try{
+		if (size() == 0)
+			throw underflow;
+		Node* temp = ptr[f];
+		for (int i = 0; i < length - 1; i++)
+			temp = temp->p;
+		int n = ptr[e]->x;
+		temp->p = ptr[e]->p;
+		delete ptr[e];
+		ptr[e] = temp;
+		length--;
+		return n;
+	}
+	catch (error)
+	{
+		cout << "Queue's size 0";
+		return -1;
+	}
 }
 void Queue::push_back(int n)
 {
@@ -90,7 +98,7 @@ void Queue::push_back(int n)
 int Queue::pop_front()
 {
 	try{
-		if (this->size() <= 0)
+		if (size() == 0)
 			throw underflow;
 		Node* temp = ptr[f]->p;
 		int n = temp->x;
@@ -99,9 +107,10 @@ int Queue::pop_front()
 		length--;
 		return n;
 	}
-	catch (error t)
+	catch (error)
 	{
-		cout << "nothing to return";
+		cout << "Queue's size 0";
+		return -1;
 	}
 }
 
@@ -132,6 +141,7 @@ int Queue::at(int index) const
 			cout << "index is bigger than length";
 		if (t == underflow)
 			cout << "index is too small";
+		return -1;
 	}
 }
 int Queue::size() const
@@ -153,12 +163,12 @@ void Queue::reverse()
 	ptr[e] = empty.p;
 	empty.p = temp;
 }
-void Queue::print() const
+void Queue::print(ofstream &outfile) const
 {
 	Node* temp = ptr[f]->p;
 	for (int i = 0; i < length; i++)
 	{
-		cout << i+1 << ": " << temp->x << "   ";
+		outfile << i + 1 << ": " << temp->x << "   " << endl;
 		temp = temp->p;
 	}
 }
@@ -166,47 +176,73 @@ void Queue::print() const
 int main()
 {
 	ifstream infile("Queue_input.txt");
-	string s;
-	Queue Q;
-	int n;//파일입출력은 후에
-	while (infile.eof())
+	Queue* Q;
+	bool De=false;
+	if (!infile.is_open())
 	{
-		cin >> s;
-		if (!s.compare("push_back"))
-		{
-			cin >> n;
-			Q.push_back(n);
-		}
-		else if (!s.compare("pop_front"))
-		{
-			cout << Q.pop_front();
-		}
-		else if (!s.compare("front"))
-		{
-			cout << Q.front();
-		}
-		else if (!s.compare("end"))
-		{
-			cout << Q.end();
-		}
-		else if (!s.compare("at"))
-		{
-			cin >> n;
-			cout << Q.at(n);
-		}
-		else if (!s.compare("size"))
-		{
-			cout << Q.size();
-		}
-		else if (!s.compare("reverse"))
-		{
-			Q.reverse();
-		}
-		else if (!s.compare("print"))
-		{
-			Q.print();
-		}
+		infile.open("Deque_input.txt");
 	}
+	ofstream outfile("Queue_output.txt");
+	string s;
+	int n;
+	infile >> s;
+	if (!s.compare("Queue"))
+		Q = new Queue;
+	else if (!s.compare("Deque"))
+	{
+		Q = new Deque;
+		De = true;
+	}
+	else
+		return 0;
+		
+		while (infile >> s)
+		{
+			if (!s.compare("push_back"))
+			{
+				infile >> n;
+				Q->push_back(n);
+			}
+			else if (!s.compare("pop_front"))
+			{
+				outfile << "pop_front: " << Q->pop_front() << endl;
+			}
+			else if (!s.compare("front"))
+			{
+				outfile << "front: " << Q->front() << endl;
+			}
+			else if (!s.compare("end"))
+			{
+				outfile << "end: " << Q->end() << endl;
+			}
+			else if (!s.compare("at"))
+			{
+				infile >> n;
+				outfile << "at " << n << ": " << Q->at(n) << endl;
+			}
+			else if (!s.compare("size"))
+			{
+				outfile << "size: " << Q->size() << endl;
+			}
+			else if (!s.compare("reverse"))
+			{
+				Q->reverse();
+				outfile << "reverse completed"<<endl;
+			}
+			else if (!s.compare("print"))
+			{
+				Q->print(outfile);
+			}
+			else if (De&&!s.compare("push_front"))
+			{
+				infile >> n;
+				Q->push_front(n);
+			}
+			else if (De&&!s.compare("pop_back"))
+			{
+				outfile << "pop_back: " << Q->pop_back() << endl;
+			}
+		}
+		delete Q;
 	return 0;
-}
-*/
+	}

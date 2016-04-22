@@ -1,5 +1,4 @@
-/*//maker: parksb2942
-#include<iostream>
+/*#include<iostream>
 #include<string>
 #include<fstream>
 using namespace std;
@@ -42,9 +41,10 @@ public:
 		node* temp = head.next;
 		for (int i = 0; i < len; i++)
 		{
-			cout << i + 1 << ": "<<temp->n<<endl;
+			outfile << temp->n << ' ';
 			temp = temp->next;
 		}
+		outfile << endl;
 	}
 	bool search_e(int n)
 	{
@@ -102,6 +102,7 @@ public:
 		}
 	}
 private:
+	static ofstream outfile;
 	node head;
 	node* tempforgetdata;
 	int len;
@@ -132,37 +133,40 @@ private:
 		len--;
 	}
 };
+ofstream Set::outfile("output.txt");
 int main()
 {
+	ifstream infile("input.txt");
 	Set set[2];
 	string s;
 	int n1, n2;
-	while (1)
+	while (infile >> s >> n1)
 	{
-		cin >> s >> n1 >> n2;
-
-		if (!s.compare("ADD"))
-			set[n1-1].add(n2);
-		else if (!s.compare("REMOVE"))
-			set[n1 - 1].remove(n2);
-		else if (!s.compare("PRINT"))
+		if (!s.compare("PRINT"))
 			set[n1 - 1].print();
-		else if (!s.compare("DIFF"))
-		{
-			if (n1 != n2)
-				set[n1 - 1].difference(set[n2 - 1]);
+		else{
+			infile >> n2;
+			if (!s.compare("ADD"))
+				set[n1 - 1].add(n2);
+			else if (!s.compare("REMOVE"))
+				set[n1 - 1].remove(n2);
+
+			else if (!s.compare("DIFF"))
+			{
+				if (n1 != n2)
+					set[n1 - 1].difference(set[n2 - 1]);
+			}
+			else if (!s.compare("UNION"))
+			{
+				if (n1 != n2)
+					set[n1 - 1].Union(set[n2 - 1]);
+			}
+			else if (!s.compare("INTERSECT"))
+			{
+				if (n1 != n2)
+					set[n1 - 1].intersection(set[n2 - 1]);
+			}
 		}
-		else if (!s.compare("UNION"))
-		{
-			if (n1 != n2)
-				set[n1 - 1].Union(set[n2 - 1]);
-		}
-		else if (!s.compare("INTERSECT"))
-		{
-			if (n1 != n2)
-				set[n1 - 1].intersection(set[n2 - 1]);
-		}
-		set[n1 - 1].print();
 	}
 	return 0;
 }

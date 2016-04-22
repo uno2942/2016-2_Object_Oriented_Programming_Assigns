@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<ctime>
 using namespace std;
 
@@ -33,3 +33,4 @@ C::s C::ft()
 	s temp = { 1, 2 };
 	return temp;
 }
+*/

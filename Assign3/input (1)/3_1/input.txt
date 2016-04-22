@@ -1,0 +1,9 @@
+1 0 0 1
+1 0 0 1
+add a b
+print
+sub a b
+mul a b
+print 
+inverse 
+print

@@ -1,0 +1,10 @@
+12 15 26 71
+15 63 74 872
+add b a
+print
+sub a b
+print
+mul a b
+print 
+inverse 
+print

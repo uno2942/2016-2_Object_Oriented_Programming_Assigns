@@ -1,0 +1,18 @@
+Deque
+push_back 10
+push_back 20
+push_back 30
+push_front 40
+push_front 50
+push_front 60
+print
+front
+end
+at 3
+size
+pop_front
+pop_back
+reverse
+reverse
+at 3
+print
